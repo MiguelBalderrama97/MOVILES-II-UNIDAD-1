@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private RoseFragment roseFragment;
     private GreenFragment greenFragment;
@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
             roseFragment = (RoseFragment) fragment;
         }else if(fragment.getClass() == GreenFragment.class){
             greenFragment = (GreenFragment) fragment;
+        }
+    }
+
+    public void onFromFragToMain(String sender, String msg){
+        if(sender.equals("ROSE")){
+            roseFragment.onFromMainToFrag(msg);
+        }else{
+            greenFragment.onFromMainToFrag(msg);
         }
     }
 }
