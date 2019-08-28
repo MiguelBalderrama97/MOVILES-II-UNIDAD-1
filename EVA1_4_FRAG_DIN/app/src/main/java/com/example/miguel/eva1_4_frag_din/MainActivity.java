@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //                fragmentTransaction.commit();
                 fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.add(R.id.frameFragmentos,secondFragment,"FIRST");
+                fragmentTransaction.add(R.id.frameFragmentos,secondFragment,"SECOND");
                 fragmentTransaction.commit();
             }
         });
