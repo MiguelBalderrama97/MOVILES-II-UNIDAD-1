@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    private DetailsFragment detailsFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,15 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        Toast.makeText(this, item.content, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, item.content, Toast.LENGTH_SHORT).show();
+
+        detailsFragment = new DetailsFragment();
+        detailsFragment.onMainToFrag(item.content);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
+//        fragmentTransaction.replace(R.id.frameLayout, itemFragment);
+        fragmentTransaction.add(R.id.frameLayout, detailsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
