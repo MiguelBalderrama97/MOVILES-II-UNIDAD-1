@@ -6,14 +6,14 @@
     android:padding="16dp">
 
     <fragment
-        android:id="@+id/fragmentGreen"
+        android:id="@+id/fragmentGreenLand"
         android:name="com.example.miguel.eva1_6_frag_orien.GreenFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
     <fragment
-        android:id="@+id/fragmentRose"
+        android:id="@+id/fragmentRoseLand"
         android:name="com.example.miguel.eva1_6_frag_orien.RoseFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"

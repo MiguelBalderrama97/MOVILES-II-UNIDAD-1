@@ -1,12 +1,14 @@
 package com.example.miguel.eva1_6_frag_orien;
 
 import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     private GreenFragment greenFragment;
     private RoseFragment roseFragment;
@@ -19,16 +21,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            greenFragment = new GreenFragment();
+            fragmentTransaction.replace(R.id.fragmentGreenPort, greenFragment);
+            fragmentTransaction.commit();
 
         }else{
-            fragmentManager = getSupportFragmentManager();
-
             greenFragment = new GreenFragment();
-
-            fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
-            fragmentTransaction.replace(R.id., itemFragment);
+            roseFragment = new RoseFragment();
+            fragmentTransaction.replace(R.id.fragmentGreenLand, greenFragment);
+            fragmentTransaction.replace(R.id.fragmentRoseLand, roseFragment);
             fragmentTransaction.commit();
         }
     }

@@ -9,8 +9,13 @@
     android:padding="16dp">
 
 
+    <!--<FrameLayout-->
+        <!--android:id="@+id/frameLayPort"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></FrameLayout>-->
+
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragmentGreenPort"
         android:name="com.example.miguel.eva1_6_frag_orien.GreenFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
