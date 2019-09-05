@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,16 +35,19 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ItemFragment extends Fragment{
+public class ItemFragment extends Fragment implements ListView.OnItemClickListener{
 
     private List<Clima> lstCiudades = new ArrayList<>();
     private ListView llCiudades;
 
-    private OnListFragmentInteractionListener mListener;
-
     private Context context;
 
     private View view;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+
+    private DetailsFragment detailsFragment;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -54,18 +59,6 @@ public class ItemFragment extends Fragment{
         this.context = context;
 
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -78,7 +71,21 @@ public class ItemFragment extends Fragment{
         ConexionClima ccClimaCiudad = new ConexionClima();
         ccClimaCiudad.execute();
 
+        llCiudades.setOnItemClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        fragmentManager = getFragmentManager();
+        detailsFragment = new DetailsFragment();
+        detailsFragment.onMainToFrag(lstCiudades.get(position).getCiudad());
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
+        fragmentTransaction.add(R.id.frameLayout, detailsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     class ConexionClima extends AsyncTask<Void, Void, String> {
@@ -151,9 +158,4 @@ public class ItemFragment extends Fragment{
             }
         }
     }
-
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Clima item);
-    }
-
 }

@@ -61,7 +61,7 @@ public class WeatherAdapter extends BaseAdapter {
         txtClima = convertView.findViewById(R.id.txtClima3);
 
         Clima cClima = weathers.get(position);
-//        imgClima.setImageResource(cClima.getImagen_clima());
+//        imgClima.setImageResource(R.drawable.cloudy);
         txtCiudad.setText(cClima.getCiudad());
         txtDesc.setText(cClima.getDesc_clima());
         txtTemp.setText(cClima.getTemp()+" °F");
