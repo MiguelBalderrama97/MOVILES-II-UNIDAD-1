@@ -49,19 +49,19 @@ public class WeatherAdapter extends BaseAdapter {
         ImageView imgClima;
         TextView txtCiudad, txtClima, txtDesc, txtTemp;
 
-        if(convertView == null){ //NO EXISTE LA FILA, HAY QUE CREARLA
+        if(convertView == null){
             LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
             convertView = layoutInflater.inflate(layout, parent, false);
         }
 
-//        imgClima = convertView.findViewById(R.id.imgClima3);
+        imgClima = convertView.findViewById(R.id.imgClima3);
         txtCiudad = convertView.findViewById(R.id.txtCiudad3);
         txtDesc = convertView.findViewById(R.id.txtDesc3);
         txtTemp = convertView.findViewById(R.id.txtTemp3);
         txtClima = convertView.findViewById(R.id.txtClima3);
 
         Clima cClima = weathers.get(position);
-//        imgClima.setImageResource(R.drawable.cloudy);
+        imgClima.setImageResource(R.drawable.cloudy);
         txtCiudad.setText(cClima.getCiudad());
         txtDesc.setText(cClima.getDesc_clima());
         txtTemp.setText(cClima.getTemp()+" °F");
